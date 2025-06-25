@@ -5,7 +5,7 @@ if (!isset($_SESSION['orders'])) {
     $_SESSION['orders'] = [];
 }
 
-if (isset($_POST['order_code']) && isset($_SESSION['menu'][$_POST['order_code']])) {
+if (isset($_POST['order_code'])) {
     $orderCode = $_POST['order_code'];
     if (isset($_SESSION['orders'][$orderCode])) {
         $_SESSION['orders'][$orderCode]++;
@@ -24,11 +24,13 @@ if (isset($_POST['order_code']) && isset($_SESSION['menu'][$_POST['order_code']]
     <title>Order</title>
     <scrip src="JQuery/jquery-3.5.1.min.js">
         </script>
+        
+    <link rel="stylesheet" href="Assets/CSS/style.css">
 </head>
 
 <body>
     <div>
-        <h1>Menu</h1>
+        <h1 class="page-title">Menu</h1>
         <?php
         if (!empty($_SESSION['menu'])) {
             foreach ($_SESSION['menu'] as $order_code => $menu) {
@@ -42,19 +44,21 @@ if (isset($_POST['order_code']) && isset($_SESSION['menu'][$_POST['order_code']]
         <table>
             <tr>
                 <th>Menu</th>
-                <th>Price</th>
-                <th>Amount</th>
+                <th>Item Price</th>
+                <th>Quantity</th>
                 <th>Total Price</th>
             </tr>
             <?php
             if (!empty($_SESSION['orders'])) {
+                $totalBill = 0;
                 foreach ($_SESSION['orders'] as $orderCode => $quantity) {
+
                     if (isset($_SESSION['menu'][$orderCode])) {
                         $menuItem = $_SESSION['menu'][$orderCode];
                         $total = $menuItem['price'] * $quantity;
-                        $itemName = htmlspecialchars($menuItem['name']);
-                        $itemPrice = htmlspecialchars($menuItem['price']);
-                        
+                        $itemName = $menuItem['name'];
+                        $itemPrice = $menuItem['price'];
+                        $totalBill += $total;
                         echo <<<html
                         <tr>
                             <td>{$itemName}</td>
@@ -65,6 +69,7 @@ if (isset($_POST['order_code']) && isset($_SESSION['menu'][$_POST['order_code']]
                         html;
                     }
                 }
+                echo "<td colspan='3'>Total Bill</td><td>{$totalBill}</td>";
             }
             ?>
         </table>

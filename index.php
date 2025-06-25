@@ -15,13 +15,14 @@ if (isset($_POST['menu-code']) && isset($_POST['menu-name']) && isset($_POST['me
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Menu</title>
+    <link rel="stylesheet" href="Assets/CSS/style.css">
 </head>
 <scrip src="JQuery/jquery-3.5.1.min.js">
     </script>
 
     <body>
-        <h1>Create Menu</h1>
-        <form method="POST" action="index.php">
+        <h1 class="page-title">Create Menu</h1>
+        <form class="menu-input" method="POST" action="index.php">
             <label for="menu-code">Insert Menu Code</label><br>
             <input type="textbox" name="menu-code" id="menu-code"><br>
             <label for="menu-name">Insert Menu Name</label><br>
@@ -32,7 +33,7 @@ if (isset($_POST['menu-code']) && isset($_POST['menu-name']) && isset($_POST['me
             <input type="textbox" name="menu-image" id="menu-image"><br>
             <input type="submit" id="submit">
         </form>
-        <a href="order.php">Order Menu</a>
+        <a class="hyperlink" href="order.php">Order Menu</a>
     </body>
 
 </html>
