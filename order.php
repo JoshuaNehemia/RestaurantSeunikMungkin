@@ -1,10 +1,8 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['orders'])) {
     $_SESSION['orders'] = [];
 }
-
 if (isset($_POST['order_code'])) {
     $orderCode = $_POST['order_code'];
     if (isset($_SESSION['orders'][$orderCode])) {
@@ -17,20 +15,15 @@ if (isset($_POST['order_code'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
-    <scrip src="JQuery/jquery-3.5.1.min.js">
-        </script>
-        
     <link rel="stylesheet" href="Assets/CSS/style.css">
+    <script src="JQuery/jquery-3.5.1.min.js"></script>
 </head>
-
 <body>
-    <div>
-        <h1 class="page-title">Menu</h1>
+    <h1 class="page-title">Menu</h1>
+    <div class="card-container">
         <?php
         if (!empty($_SESSION['menu'])) {
             foreach ($_SESSION['menu'] as $order_code => $menu) {
@@ -39,41 +32,28 @@ if (isset($_POST['order_code'])) {
         }
         ?>
     </div>
-    <div>
+    <div class="order-box">
         <h2>Your Order</h2>
-        <table>
-            <tr>
-                <th>Menu</th>
-                <th>Item Price</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-            </tr>
-            <?php
-            if (!empty($_SESSION['orders'])) {
-                $totalBill = 0;
-                foreach ($_SESSION['orders'] as $orderCode => $quantity) {
-
-                    if (isset($_SESSION['menu'][$orderCode])) {
-                        $menuItem = $_SESSION['menu'][$orderCode];
-                        $total = $menuItem['price'] * $quantity;
-                        $itemName = $menuItem['name'];
-                        $itemPrice = $menuItem['price'];
-                        $totalBill += $total;
-                        echo <<<html
-                        <tr>
-                            <td>{$itemName}</td>
-                            <td>{$itemPrice}</td>
-                            <td>{$quantity}</td>
-                            <td>{$total}</td>
-                        </tr>
-                        html;
-                    }
-                }
-                echo "<td colspan='3'>Total Bill</td><td>{$totalBill}</td>";
-            }
-            ?>
-        </table>
+        <div id="order-list"></div>
+        <div id="total-bill">Total: Rp 0</div>
     </div>
+    <script>
+        $(document).ready(function () {
+            let total = 0;
+            $(".pilih-btn").click(function (e) {
+                e.preventDefault();
+                let button = $(this);
+                let card = button.closest(".card");
+                let name = card.find(".menu-name").text();
+                let price = parseInt(card.find(".menu-price").text().replace("Rp ", ""));
+                $("#order-list").append(
+                    `<div class="order-item">${name} - Rp ${price}</div>`
+                );
+                button.prop("disabled", true);
+                total += price;
+                $("#total-bill").text("Total: Rp " + total);
+            });
+        });
+    </script>
 </body>
-
 </html>
