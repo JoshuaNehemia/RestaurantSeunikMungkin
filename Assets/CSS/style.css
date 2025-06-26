@@ -1,120 +1,181 @@
-/* General Body Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
 }
 
-/* Page Title Styles */
+body {
+    background-color: #fff8f0;
+    padding: 30px;
+    color: #2c3e50;
+}
+
 .page-title {
-    color: #444;
+    font-size: 36px;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-bottom: 25px;
     text-align: center;
-    margin-bottom: 30px;
 }
 
-/* Menu Container */
-.menu-container {
+.menu-input {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.menu-input label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.menu-input input[type="text"],
+.menu-input input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#submit {
+    padding: 10px 25px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#submit:hover {
+    background-color: #c0392b;
+}
+
+.hyperlink {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.hyperlink:hover {
+    text-decoration: underline;
+}
+
+.card-container {
+    float: left;
+    width: calc(100% - 280px);
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 40px;
+    gap: 35px;
 }
 
-/* Menu Card Styles (assuming a structure from menuCard.php) */
-.menu-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 220px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.2s ease;
+.card {
+    width: 180px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
 }
 
-.menu-card:hover {
+.card:hover {
     transform: translateY(-5px);
 }
 
-.menu-card .menu-image {
+.menu-image {
     width: 100%;
     height: 150px;
     object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-.menu-card .menu-name {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
+.menu-code {
+    font-size: 12px;
+    color: #777;
+    padding: 5px 10px 0;
 }
 
-.menu-card .menu-price {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 15px;
+.menu-name {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
+    color: #e74c3c;
 }
 
-/* Order Button on Menu Card */
-.menu-card .order-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
+.menu-price {
+    font-size: 16px;
+    padding: 0 10px 10px;
+    color: #f1c40f;
+    font-weight: bold;
+}
+
+.pilih-btn {
+    background-color: #f1c40f;
+    color: #2c3e50;
     border: none;
-    border-radius: 4px;
+    margin: 10px;
+    padding: 8px;
+    width: 80%;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+}
+
+.pilih-btn:hover:enabled {
+    background-color: #f39c12;
+}
+
+.pilih-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.order-box {
+    float: right;
+    width: 250px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-left: 20px;
+}
+
+.order-box h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #e74c3c;
+    text-align: center;
+}
+
+.order-item {
+    background-color: #fff2cc;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#total-bill {
     font-size: 16px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.menu-card .order-button:hover {
-    background-color: #0056b3;
-}
-
-/* Order Summary Section */
-.order-summary-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.order-summary-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #444;
-}
-
-/* Order Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
-}
-
-th, td {
-    text-align: left;
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-/* Style for the total bill row */
-table td[colspan='3'] {
-    font-weight: bold;
-    color: #333;
     text-align: right;
-    padding-right: 20px;
+    color: #e74c3c;
 }
